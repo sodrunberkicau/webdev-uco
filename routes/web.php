@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\ProductController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\ProductController::class, 'index'])->name('catalog');
 Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -25,5 +25,14 @@ Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class, 's
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
 Route::get('/cart/delete', [\App\Http\Controllers\CartController::class, 'delete'])->name('cart.delete');
 Route::post('/cart/add/{id}', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
+
+Route::controller(\App\Http\Controllers\ProductController::class)->group(function() {
+
+        Route::match(['get', 'post'], '/product/create', 'create')
+        //->can('create_product', App\Models\Product::class)
+        ->name('product-create');
+        Route::match(['get', 'post'], '/product/{id}/edit', 'edit')->name('product-edit');
+    
+    });
 
 Auth::routes();
