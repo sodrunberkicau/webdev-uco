@@ -16,11 +16,17 @@ class ProductController extends Controller
                 'name' => ['required'],
                 'description' => [],
                 'price' => ['required', 'numeric', 'min:0'],
-                'images' => ['required', 'array'],
+                'images' => ['required'],
                 'images.*' => [File::image()->max(5 * 1024)]
         ]);
 
-            $product = Product::create($data);
+            // $product = Product::create($data);
+            $product = new Product();
+            $product['name'] = $data->name;
+            $product['description'] = $data->description;
+            $product['price'] = $data->price;
+            $product['images'] = $data->images;
+            $product->save();
             if ($product) {
                 if ($request->has('images')) {
                     foreach ($request->file('images') as $file) {
@@ -32,6 +38,8 @@ class ProductController extends Controller
                         ProductImage::create([
                             'product_id' => $product->id,
                             'name' => $filename
+                            
+                               
                         ]);
                     }
                 }

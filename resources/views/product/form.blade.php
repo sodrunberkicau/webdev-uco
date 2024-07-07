@@ -5,7 +5,7 @@
                 Add product
             </div>
             <div class="card-body">
-                <form method="post" class="was-validated" enctype="multipart/form-data">
+                <form method="post" action="{{ route('product-create')}}" class="was-validated" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="images" class="form-label">New images</label>
-                        <input type="file" class="form-control" name="images[]" id="images" accept="image/png, image/jpg, image/jpeg" required multiple>
+                        <input type="file" class="form-control" name="images" id="images" accept="image/png, image/jpg, image/jpeg" required multiple>
                         @error('images')
                         <div class="text-danger">{{ $errors->first('images') }}</div>
                         @enderror

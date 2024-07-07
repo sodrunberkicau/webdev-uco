@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
-
+    //protected $fillable;
 
     public static function sumPricesByQuantities($products, $productsInSession)
     {

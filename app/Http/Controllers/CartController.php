@@ -7,8 +7,15 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+   // function list(Request $request)
     public function index(Request $request)
     {
+        
+        
+        
+        
+        
+        
         $total = 0;
         $productsInCart = [];
         $productsInSession = $request->session()->get("products");
