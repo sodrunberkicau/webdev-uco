@@ -16,7 +16,8 @@
 
             <div class="col-sm-3 mb-3 mb-sm-0">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ $product['image'] }}" class="card-img-top object-fit-cover" alt="...">
+                    <img src="storage/{{ $product['image'] }}" class="card-img-top object-fit-cover" alt="...">
+
                     <div class="card-body">
                         {{--                        <h5 class="card-title">{{ $product['name']}}</h5>--}}
                         <a href="{{ route('product.show', ['id'=> $product['id']]) }}">

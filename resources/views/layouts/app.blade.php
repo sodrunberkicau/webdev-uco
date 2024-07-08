@@ -59,7 +59,6 @@
                         >Logout</a>
                     </form>
                 @endguest
-                <i class="fa-solid fa-cart-shopping"></i>
                 <a href="{{route('cart.index')}}">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
