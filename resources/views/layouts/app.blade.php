@@ -60,6 +60,9 @@
                     </form>
                 @endguest
                 <i class="fa-solid fa-cart-shopping"></i>
+                <a href="{{route('cart.index')}}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
             </div>
         </div>
     </div>

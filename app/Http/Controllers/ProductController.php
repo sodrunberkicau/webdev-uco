@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File ;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -28,7 +29,15 @@ class ProductController extends Controller
             $product->image = $data['images'];
             $product->save();
             if ($product) {
-                if ($request->has('images')) {
+                if ($request->hasFile('images')) {
+                    $imageName = $product->id . "." . $request ->file('image')->extension();
+                    Storage::disk('public')->put(
+                        $imageName,
+                        file_get_contents($request->file('image')->getRealPart())
+                    );
+                    $product->image = $imageName;
+                    $product->save();
+                    
                     foreach ($request->file('images') as $file) {
                         $extension = $file->getClientOriginalExtension();
                         $filename = uniqid().'.'.$extension;
@@ -36,7 +45,7 @@ class ProductController extends Controller
                         $file->move('storage/product', $filename);
 
                         ProductImage::create([
-                            'product_id' => $product->id,
+                           'product_id' => $product->id,
                             'name' => $filename
                             
                                
@@ -82,7 +91,7 @@ class ProductController extends Controller
                     }
                 }
 
-                return redirect()->route('product-detail', ['id' => $product->id]);
+                return redirect()->route('routet-catalog', ['id' => $product->id]);
             }
 
             return back()->withInput();
@@ -99,6 +108,7 @@ class ProductController extends Controller
         $products = Product::all();
         $viewData["products"] = $products;
 //dd($viewData);
+
         return view('product.index')->with("viewData", $viewData);
     }
 
