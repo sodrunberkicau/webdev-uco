@@ -22,10 +22,10 @@ class ProductController extends Controller
 
             // $product = Product::create($data);
             $product = new Product();
-            $product['name'] = $data->name;
-            $product['description'] = $data->description;
-            $product['price'] = $data->price;
-            $product['images'] = $data->images;
+            $product->name = $data['name'];
+            $product->description = $data['description'];
+            $product->price = $data['price'];
+            $product->images = $data['images'];
             $product->save();
             if ($product) {
                 if ($request->has('images')) {
@@ -44,7 +44,7 @@ class ProductController extends Controller
                     }
                 }
 
-                return redirect()->route('catalog-detail', ['id' => $product->id]);
+                return redirect()->route('route:catalog', ['id' => $product->id]);
             }
 
             return back()->withInput();
@@ -82,7 +82,7 @@ class ProductController extends Controller
                     }
                 }
 
-                return redirect()->route('catalog-detail', ['id' => $product->id]);
+                return redirect()->route('route:catalog', ['id' => $product->id]);
             }
 
             return back()->withInput();
