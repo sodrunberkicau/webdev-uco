@@ -90,9 +90,17 @@ class ProductController extends Controller
     {
 
         $viewData = [];
-        $products = Product::all();
+
+        $products = Product::get();
+        $products->each(function($data) {            
+            $data->image = "https://dummyimage.com/600x400/000/fff";
+        });
+
         $viewData["products"] = $products;
-//dd($viewData);
+
+
+        // dd($viewData[0]);
+        
         return view('product.index')->with("viewData", $viewData);
     }
 

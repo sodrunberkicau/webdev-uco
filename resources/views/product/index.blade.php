@@ -5,8 +5,9 @@
     <div class="row">
         @foreach ($viewData["products"] as $product)
             <div class="col-sm-3 mb-3 mb-sm-0">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('storage/product/'.$product['image']) }}" class="card-img-top object-fit-cover" alt="...">
+                <div class="card">
+                    <img src="https://dummyimage.com/600x400/000/fff" class="card-img-top object-fit-cover" alt="...">
+                    <!-- <img src="{{ asset('storage/product/'.$product['image']) }}" class="card-img-top object-fit-cover" alt="..."> -->
                     <div class="card-body">
                         <a href="{{ route('product.show', ['id'=> $product['id']]) }}">
                             <h5 class="card-title">{{ $product['name'] }}</h5>

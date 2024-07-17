@@ -18,7 +18,7 @@ Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class, 's
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route::get('/cart', 'App \ Http \ Controllers \ CartController@index')->name("cart.index");
+Route::get('/cart', 'App \ Http \ Controllers \ CartController@index')->name("cart.index");
 //Route::get('/cart/delete', 'App \ Http \ Controllers \ CartController@delete')->name("cart.delete");
 //Route::post('/cart/add/{id}', 'App \ Http \ Controllers \ CartController@add')->name("cart.add");
 
